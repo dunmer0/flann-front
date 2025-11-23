@@ -1,0 +1,11 @@
+<div class="bg-green-100 flex flex-col justify w-full h-full">
+  <div class="text-4xl font-extrabold text-violet-600 text-center mb-2">Perioade</div>
+  @for (period of this.periodService.periods(); track period.id){
+  <button
+    class="group cursor-pointer bg-gray-300 px-1 py-2 text-xl font-bold border-4 border-violet-800 rounded-2xl mt-2"
+  >
+    <p class="group-hover:hidden">{{period.start | customDatePipe}}</p>
+    <p class="hidden group-hover:block">{{period.start}} / {{period.end}}</p>
+  </button>
+  }
+</div>

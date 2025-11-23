@@ -1,0 +1,14 @@
+<div class="grid grid-cols-12">
+  <div
+    class="col-span-2 grid grid-rows-12 gap-4 bg-green-200 h-screen mx-auto text-center w-full p-2"
+  >
+    <app-button-component componentName="perioade"> Perioade </app-button-component>
+    <app-button-component componentName="categorii"> Categorii </app-button-component>
+    <app-button-component componentName="venituri"> Venituri </app-button-component>
+    <app-button-component componentName="cheltuieli"> Cheltuieli </app-button-component>
+    <button (click)="testButton()">Call</button>
+  </div>
+  <div class="col-span-2">
+    <router-outlet></router-outlet>
+  </div>
+</div>
