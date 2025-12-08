@@ -1,11 +1,41 @@
-<div class="bg-green-100 flex flex-col justify w-full h-full">
-  <div class="text-4xl font-extrabold text-violet-600 text-center mb-2">Perioade</div>
-  @for (period of this.periodService.periods(); track period.id){
-  <button
-    class="group cursor-pointer bg-gray-300 px-1 py-2 text-xl font-bold border-4 border-violet-800 rounded-2xl mt-2"
-  >
-    <p class="group-hover:hidden">{{period.start | customDatePipe}}</p>
-    <p class="hidden group-hover:block">{{period.start}} / {{period.end}}</p>
-  </button>
-  }
+<div class="grid grid-cols-10 h-full m-2 bg-green-100 rounded-2xl ">
+  <div class="flex flex-col justify w-full h-full col-span-2">
+    <div class="flex items-center justify-between px-4 mb-2">
+      <div class="text-4xl font-extrabold text-violet-600">Perioade</div>
+      <button
+        (click)="goToPeriodAdd()"
+        class="p-2 bg-violet-600 text-white rounded-lg shadow-md hover:bg-violet-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 active:scale-95 transition-all duration-200"
+      >
+        <svg
+          class="w-6 h-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+      </button>
+    </div>
+    @for (period of this.periodService.periods(); track period.id){
+    <button
+      (click)="getOnePeriod(period.id)"
+      class="group cursor-pointer bg-gray-300 px-1 py-2 text-xl font-bold border-4 border-violet-800 rounded-2xl mt-2"
+    >
+      <p class="group-hover:hidden">{{period.start | customDatePipe}}</p>
+      <p class="hidden group-hover:block">{{period.start}} / {{period.end}}</p>
+    </button>
+    }
+  </div>
+  <div class="col-span-8 bg-white m-4 rounded-2xl">
+    <div class="m-2 h-full">
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
 </div>

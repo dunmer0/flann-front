@@ -1,0 +1,25 @@
+<div class="flex flex-col flex-wrap mt-1 h-16">
+  <div class="flex flex-row flex-wrap mb-2">
+    <label class="text-xl mr-2">Nume</label>
+    <input
+      [field]="expenseForm.name"
+      type="text" class="bg-white w-40">
+  </div>
+  <div class="flex flex-row flex-wrap">
+    <label class="text-xl mr-6">Cost</label>
+    <input
+      [field]="expenseForm.cost"
+      type="number" class="bg-white w-40">
+  </div>
+  <div class="flex flex-row flex-wrap ml-4">
+    <label class="text-xl mr-6">Data</label>
+    <input
+      [field]="expenseForm.date"
+      type="date" class="bg-white w-40">
+  </div>
+  <div class="flex flex-row flex-wrap  justify-end">
+    <button
+      (click)="addExpense()"
+      class=" cursor-pointer text-lg  bg-white mt-2 pl-2 pr-2" >Adauga</button>
+  </div>
+</div>
