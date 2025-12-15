@@ -1,4 +1,4 @@
-import {Category, CategoryAPI, mapCategory} from './category';
+import {Category, CategoryAPI, fromAPI} from './category';
 
 export interface Period {
   id: number;
@@ -30,6 +30,6 @@ export function mapPeriod(api: PeriodWithCategoriesAPI): PeriodWithCategories{
     id: api.id,
     start: api.start,
     end: api.end,
-    categories: api.categories.map(category => mapCategory(category))
+    categories: api.categories.map(category => fromAPI(category))
   }
 }

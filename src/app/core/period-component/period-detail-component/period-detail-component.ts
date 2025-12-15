@@ -34,6 +34,8 @@ export class PeriodDetailComponent {
 
   categories = computed(() => this.periodService.selectedPeriod().categories);
 
-
+  goToCategoryAdd(){
+    this.router.navigate(['category-add'], {relativeTo: this.route });
+  }
 
 }

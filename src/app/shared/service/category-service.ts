@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import {Category, CategoryAPI, CategoryWithExpenses, mapCategory} from '../models/category';
+import {Category, CategoryAPI, CategoryWithExpenses, fromAPI, toAPI} from '../models/category';
 import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class CategoryService {
   // }
   getCategories(): void{
     this.http.get<CategoryAPI[]>(this.baseUrl).pipe(
-      map(apiList => apiList.map(api => mapCategory(api))
+      map(apiList => apiList.map(api => fromAPI(api))
     )).subscribe({
       next: mappedList => {
         this.categories.set(mappedList);
@@ -44,7 +44,7 @@ export class CategoryService {
 
   getCategoryWithExpense(categoryId: number): void {
     this.http.get<CategoryAPI>(`${this.baseUrl}/${categoryId}`).pipe(
-       map(api => mapCategory(api))
+       map(api => fromAPI(api))
     ).subscribe({
       next: category => {
 
@@ -57,13 +57,13 @@ export class CategoryService {
   }
 
   addCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(this.baseUrl, category).pipe(
+    return this.http.post<CategoryAPI>(this.baseUrl, toAPI(category)).pipe(
       map((data) => ({
         id: data.id,
-        name: data.name,
-        anticipatedExpense: data.anticipatedExpense,
+        name: data.category_name,
+        anticipatedExpense: data.anticipated_expense,
         actualExpense: 0,
-        periodId: data.periodId,
+        periodId: data.period_id,
       })),
       tap(() => this.getCategories())
     );

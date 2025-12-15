@@ -1,4 +1,4 @@
-<div class="grid grid-cols-10 h-full m-2 bg-green-100 rounded-2xl ">
+<div class="grid grid-cols-10 h-full m-2 bg-gray-100 rounded-2xl ">
   <div class="flex flex-col justify w-full h-full col-span-2">
     <div class="flex items-center justify-between px-4 mb-2">
       <div class="text-4xl font-extrabold text-violet-600">Perioade</div>
@@ -25,7 +25,7 @@
     @for (period of this.periodService.periods(); track period.id){
     <button
       (click)="getOnePeriod(period.id)"
-      class="group cursor-pointer bg-gray-300 px-1 py-2 text-xl font-bold border-4 border-violet-800 rounded-2xl mt-2"
+      class="group cursor-pointer bg-white px-1 py-2 text-xl font-bold border-4 border-violet-800 rounded-2xl mt-2 hover:bg-gray-300"
     >
       <p class="group-hover:hidden">{{period.start | customDatePipe}}</p>
       <p class="hidden group-hover:block">{{period.start}} / {{period.end}}</p>

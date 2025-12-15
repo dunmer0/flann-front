@@ -19,20 +19,36 @@ export interface CategoryWithExpenses {
 
 export interface CategoryAPI {
   id: number;
-  name: string;
+  category_name: string;
   anticipated_expense: number;
   actual_expenses: number;
   period_id: number;
-  expenses: Expense[]
+  expenses: Expense[];
 }
 
-export function mapCategory(api: CategoryAPI): CategoryWithExpenses{
+export function fromAPI(api: CategoryAPI): CategoryWithExpenses {
   return {
     id: api.id,
-    name: api.name,
+    name: api.category_name,
     anticipatedExpense: api.anticipated_expense,
     actualExpense: api.actual_expenses,
     periodId: api.period_id,
-    expenses: api.expenses
+    expenses: api.expenses,
   }
 }
+
+  export function toAPI(category:Category):CategoryAPI {
+    return {
+      id: category.id,
+      category_name: category.name,
+      anticipated_expense: category.anticipatedExpense,
+      actual_expenses: category.actualExpense,
+      period_id: category.periodId,
+      expenses: []
+    }
+  }
+
+
+
+
+
