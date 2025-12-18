@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { PeriodService } from '../../shared/service/period-service';
 import { CustomDatePipePipe } from '../../shared/pipes/custom-date-pipe-pipe';
 import { RouterOutlet, Router, ActivatedRoute } from '@angular/router';
+import { IncomeComponent } from "../income-component/income-component";
 
 @Component({
   selector: 'app-period-component',
-  imports: [CustomDatePipePipe, RouterOutlet],
+  imports: [CustomDatePipePipe, RouterOutlet, IncomeComponent],
   templateUrl: './period-component.html',
   styleUrl: './period-component.css',
 })
