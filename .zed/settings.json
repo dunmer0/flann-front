@@ -3,7 +3,7 @@
     "enabled": true,
     "show_type_hints": true,
     "show_parameter_hints": true,
-    "show_other_hints": true
+    "show_other_hints": true,
   },
   // =========================
   // Language-Specific Settings
@@ -14,14 +14,14 @@
       "language_servers": ["angular", "typescript-language-server"],
       "tab_size": 2,
       "format_on_save": "on",
-      "formatter": "auto"
+      "formatter": "auto",
     },
 
     // JavaScript
     "JavaScript": {
       "tab_size": 2,
       "format_on_save": "on",
-      "formatter": "auto"
+      "formatter": "auto",
     },
 
     // HTML (Angular templates)
@@ -29,15 +29,15 @@
       "language_servers": ["angular", "html", "emmet", "..."],
       "tab_size": 2,
       "format_on_save": "on",
-      "formatter": "prettier"
+      "formatter": "prettier",
     },
 
     // CSS/SCSS
     "CSS": {
       "tab_size": 2,
       "format_on_save": "on",
-      "formatter": "auto"
-    }
+      "formatter": "auto",
+    },
   },
 
   // =========================
@@ -53,10 +53,10 @@
             // Disable formatting inside <svg> or <script>
             "contentUnformatted": "svg,script",
             // Add an extra newline before <div> and <p>
-            "extraLiners": "div,p"
-          }
-        }
-      }
+            "extraLiners": "div,p",
+          },
+        },
+      },
     },
     // TypeScript/Angular Language Server
     "typescript-language-server": {
@@ -69,12 +69,12 @@
           "includeInlayPropertyDeclarationTypeHints": true,
           "includeInlayFunctionLikeReturnTypeHints": true,
           "includeInlayEnumMemberValueHints": true,
-          "disableAutomaticTypingAcquisition": false
+          "disableAutomaticTypingAcquisition": false,
         },
         "tsserver": {
-          "useSyntaxServer": "auto"
-        }
-      }
+          "useSyntaxServer": "auto",
+        },
+      },
     },
 
     // Angular Language Server
@@ -82,8 +82,8 @@
       "initialization_options": {
         "angularOnly": false,
         "angular_language_server_version": "21.0",
-        "typescript_version": "5.4"
-      }
+        "typescript_version": "5.4",
+      },
     },
 
     // Tailwind CSS Language Server
@@ -93,13 +93,13 @@
           "experimental": {
             "classRegex": [
               ["class:\\s*?[\"'`]([^\"'`]*).*?[\"'`]", "[\"'`]([^\"'`]*).*?[\"'`]"],
-              ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-            ]
+              ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+            ],
           },
           "includeLanguages": {
             "typescript": "html",
             "javascript": "html",
-            "typescriptreact": "html"
+            "typescriptreact": "html",
           },
           "validate": true,
           "colorDecorators": true,
@@ -111,11 +111,11 @@
             "invalidScreen": "error",
             "invalidTailwindDirective": "error",
             "invalidVariant": "error",
-            "recommendedVariantOrder": "warning"
-          }
-        }
-      }
-    }
+            "recommendedVariantOrder": "warning",
+          },
+        },
+      },
+    },
   },
 
   // =========================
@@ -123,7 +123,7 @@
   // =========================
   "file_types": {
     "TypeScript": ["ts"],
-    "HTML": ["html", "component.html"]
+    "HTML": ["html", "component.html"],
   },
 
   // =========================
@@ -131,12 +131,12 @@
   // =========================
   "prettier": {
     "enabled": true,
-    "printWidth": 100,
+    "printWidth": 88,
     "tabWidth": 2,
     "useTabs": false,
     "semi": true,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
   },
 
   // =========================
@@ -144,6 +144,6 @@
   // =========================
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
-  }
+    "metrics": false,
+  },
 }

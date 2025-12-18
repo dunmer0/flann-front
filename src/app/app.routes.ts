@@ -5,6 +5,7 @@ import { PeriodDetailComponent } from './core/period-component/period-detail-com
 import { CategoryComponent } from './core/category-component/category-component';
 import { CategoryAdd } from './core/category-component/category-add/category-add';
 import { CategoryNameComponent } from './core/category-name-component/category-name-component';
+import { IncomeDetailComponent } from './core/income-component/income-detail-component/income-detail-component';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,8 @@ export const routes: Routes = [
     component: PeriodComponent,
     children: [
       { path: 'add', component: PeriodAddComponent },
+      { path: 'venit', component: IncomeDetailComponent, outlet: 'venit2' },
+
       {
         path: 'detail/:id',
         component: PeriodDetailComponent,

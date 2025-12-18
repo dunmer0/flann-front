@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { inject } from '@angular/core/primitives/di';
-import { fromAPI, Income, IncomeAPI, toAPI } from '../models/income';
+import { fromAPI, Income, IncomeAPI, IncomeUpdate, toAPI } from '../models/income';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -11,9 +11,17 @@ export class IncomeService {
   private http = inject(HttpClient);
   private baseUrl: string = 'http://localhost/8000/api/v1/incomes';
   private _incomes = signal<Income[]>([]);
+  private _selectedIncome = signal<Income>({
+    id: NaN,
+    name: '',
+    amount: NaN,
+    date: '',
+    periodId: NaN,
+  });
   readonly incomes = this._incomes.asReadonly();
+  readonly selectedIncome = this._selectedIncome.asReadonly();
 
-  get_incomes(periodId: number): void {
+  getIncomes(periodId: number): void {
     this.http
       .get<IncomeAPI[]>(`${this.baseUrl}/period/${periodId}`)
       .pipe(
@@ -35,22 +43,37 @@ export class IncomeService {
       });
   }
 
-  add_income(income: Income): void {
-    this.http.post<IncomeAPI>(this.baseUrl, toAPI(income));
-    //TODO
+  addIncome(income: Income): void {
+    this.http
+      .post<IncomeAPI>(this.baseUrl, toAPI(income))
+      .pipe(map((incomeAPI) => fromAPI(incomeAPI)))
+      .subscribe({
+        next: (income) => this._incomes.update((current) => [...current, income]),
+        error: (err) => console.error('Could not add income', err),
+      });
+  }
+
+  getIncome(incomeId: number): void {
+    this.http
+      .get<IncomeAPI>(`${this.baseUrl}/${incomeId}`)
+      .pipe(map((incomeAPI) => fromAPI(incomeAPI)))
+      .subscribe({
+        next: (income) => this._selectedIncome.set(income),
+        error: (err) => console.error(`Could not fetch income with id: ${incomeId}`, err),
+      });
+  }
+
+  updateIncome(updateIncome: IncomeUpdate) {
+    this.http
+      .put<IncomeAPI>(this.baseUrl, updateIncome)
+      .pipe(map((incomeAPI) => fromAPI(incomeAPI)))
+      .subscribe({
+        next: (income) => this._selectedIncome.update(() => income),
+        error: (err) => console.error(`Could not update income with id:${updateIncome.id}`, err),
+      });
+  }
+
+  deleteIncome(incomeId: number) {
+    this.http.delete(`${this.baseUrl}/${incomeId}`).subscribe();
   }
 }
-
-// getCategoryWithExpense(categoryId: number): void {
-//   this.http.get<CategoryAPI>(`${this.baseUrl}/${categoryId}`).pipe(
-//      map(api => fromAPI(api))
-//   ).subscribe({
-//     next: category => {
-
-//       this.selectedCategory.set(category)
-//     },
-//     error: err => {
-//       console.error('Could not fetch category', err)
-//     }
-//   });
-// }
